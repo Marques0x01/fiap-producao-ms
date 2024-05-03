@@ -46,3 +46,23 @@ jobs:
           scanMetadataReportFile: src/.scannerwork/report-task.txt
         env:
          SONAR_TOKEN: ce26616ab69961f90b45412d6fc2b44a2ae61298
+
+  Install-serverless:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        # Disabling shallow clones is recommended for improving the relevancy of reporting
+        fetch-depth: 0
+    - name: Install dependencies
+      run: npm install -g serverless
+
+  serverless-delploy:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+          with:
+            # Disabling shallow clones is recommended for improving the relevancy of reporting
+            fetch-depth: 0
+        - name: Start Deploy
+          run: yarn deploy
