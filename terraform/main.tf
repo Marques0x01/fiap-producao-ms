@@ -1,0 +1,143 @@
+provider "aws" {
+
+  access_key                  = "test"
+  secret_key                  = "test"
+  region                      = "us-east-1"
+  s3_use_path_style           = false
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_requesting_account_id  = false
+
+
+  endpoints {
+    apigateway     = "http://localhost:4566"
+    apigatewayv2   = "http://localhost:4566"
+    cloudformation = "http://localhost:4566"
+    cloudwatch     = "http://localhost:4566"
+    dynamodb       = "http://localhost:4566"
+    ec2            = "http://localhost:4566"
+    es             = "http://localhost:4566"
+    elasticache    = "http://localhost:4566"
+    firehose       = "http://localhost:4566"
+    iam            = "http://localhost:4566"
+    kinesis        = "http://localhost:4566"
+    lambda         = "http://localhost:4566"
+    rds            = "http://localhost:4566"
+    redshift       = "http://localhost:4566"
+    route53        = "http://localhost:4566"
+    s3             = "http://s3.localhost.localstack.cloud:4566"
+    secretsmanager = "http://localhost:4566"
+    ses            = "http://localhost:4566"
+    sns            = "http://localhost:4566"
+    sqs            = "http://localhost:4566"
+    ssm            = "http://localhost:4566"
+    stepfunctions  = "http://localhost:4566"
+    sts            = "http://localhost:4566"
+  }
+}
+
+variable "account_id" {
+  description = "AWS Account ID"
+  default     = "000000000000"
+}
+
+data "aws_availability_zones" "available" {}
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.8.1"
+
+  name                 = "producao"
+  cidr                 = "10.0.0.0/16"
+  azs                  = data.aws_availability_zones.available.names
+  public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+}
+
+resource "aws_db_subnet_group" "producao" {
+  name       = "producao"
+  subnet_ids = module.vpc.public_subnets
+
+  tags = {
+    Name = "producao"
+  }
+}
+
+data "aws_caller_identity" "current" {}
+output "is_localstack" {
+  value = data.aws_caller_identity.current.id == "000000000000"
+}
+
+resource "aws_security_group" "rds" {
+  name   = "producao_rds"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "education_rds"
+  }
+}
+
+
+resource "aws_db_instance" "producao" {
+  identifier             = "producao"
+  instance_class         = "db.t3.micro"
+  allocated_storage      = 5
+  engine                 = "postgres"
+  engine_version         = "14.1"
+  username               = "edu"
+  password               = var.db_password
+  db_subnet_group_name   = aws_db_subnet_group.producao.name
+  vpc_security_group_ids = [aws_security_group.rds.id]
+  parameter_group_name   = aws_db_parameter_group.producao.name
+  publicly_accessible    = true
+  skip_final_snapshot    = true
+}
+
+resource "aws_db_parameter_group" "producao" {
+  name   = "producao"
+  family = "postgres14"
+
+  parameter {
+    name  = "log_connections"
+    value = "1"
+  }
+}
+
+variable "db_password" {
+  description = "RDS root user password"
+  type        = string
+  sensitive   = true
+}
+
+output "rds_hostname" {
+  description = "RDS instance hostname"
+  value       = aws_db_instance.producao.address
+  sensitive   = true
+}
+
+output "rds_port" {
+  description = "RDS instance port"
+  value       = aws_db_instance.producao.port
+  sensitive   = true
+}
+
+output "rds_username" {
+  description = "RDS instance root username"
+  value       = aws_db_instance.producao.username
+  sensitive   = true
+}

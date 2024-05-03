@@ -1,0 +1,58 @@
+service: fiap-lanches
+frameworkVersion: '3'
+
+plugins:
+  - serverless-localstack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  main:
+    handler: dist/src/main.handler
+    events:
+      - httpApi:
+          method: ANY
+          path: /api-docs
+      - httpApi:  
+          method: ANY
+          path: /api-docs/swagger-ui.css
+      - httpApi:  
+          method: ANY
+          path: /api-docs/swagger-ui-bundle.js
+      - httpApi:  
+          method: ANY
+          path: /api-docs/swagger-ui-standalone-preset.js
+      - httpApi:  
+          method: ANY
+          path: /api-docs/swagger-ui-init.js
+      - httpApi:
+          method: PUT
+          path: /producoes
+      - httpApi:
+          method: GET
+          path: /producoes
+      - httpApi:
+          method: POST
+          path: /producoes
+
+custom:
+  localstack:
+    debug: true
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+      - dev
+package:
+  patterns:
+    - 'node_modules/**'
+    - '!.serverless/**'
+    - '!coverage/**'
+    - 'dist/**'
+    - '!.gitignore'
+    - 'src/**'
+    - "!.github"
+    - '!.git/**'
+    - '!terraform/**'

@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
-import { PedidosModule } from './pedidos/pedidos.module';
+import { ProducaoModule } from './producao/producao.module';
+import { RouterModule } from '@nestjs/core';
 
 @Module({
   imports: [
-    PedidosModule,
+    ProducaoModule,
+    RouterModule.register([
+      {
+        path: 'producoes',
+        module: ProducaoModule,
+      },
+    ]),
   ],
   controllers: [],
   providers: [],
