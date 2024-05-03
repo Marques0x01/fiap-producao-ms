@@ -2,7 +2,6 @@ service: fiap-lanches
 frameworkVersion: '3'
 
 plugins:
-  - serverless-localstack
   - serverless-offline
 
 provider:
@@ -38,13 +37,6 @@ functions:
           method: POST
           path: /producoes
 
-custom:
-  localstack:
-    debug: true
-    stages:
-      # list of stages for which the plugin should be enabled
-      - local
-      - dev
 package:
   patterns:
     - 'node_modules/**'
