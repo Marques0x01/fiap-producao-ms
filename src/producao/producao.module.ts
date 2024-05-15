@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AlterarStatusProducaoController } from './controller/AlterarStatusProducao.controller';
-import { InicarProducaoController } from './controller/IniciarProducao.controller';
+import { CreateProducaoController } from './controller/CreateProducao.controller';
 import { ListarProducaoController } from './controller/ListarProducao.controller';
 import { ListarTodasProducoesController } from './controller/ListarTodasProducoes.controller';
 import { ListarProducaoUseCase } from './usecases/listarproducao.usecase';
@@ -16,7 +16,7 @@ import { producaoProviders } from './providers/producao.providers';
   ],
   controllers: [
     AlterarStatusProducaoController,
-    InicarProducaoController,
+    CreateProducaoController,
     ListarProducaoController,
     ListarTodasProducoesController,
   ],

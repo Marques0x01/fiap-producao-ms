@@ -1,4 +1,4 @@
-import { Controller, Put } from '@nestjs/common';
+import { Controller, Put, Req, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AlterarStatusProducaoUseCase } from '../usecases/alterarStatusProducao.usecase';
 import { Request, Response } from 'express';
@@ -11,11 +11,15 @@ class AlterarStatusProducaoController {
   ) {}
 
   @Put()
-  async handle(request: Request, response: Response): Promise<void> {
+  async handle(
+    @Req() request: Request,
+    @Res() response: Response,
+  ): Promise<Response> {
     const id = request.params.id;
     const { status } = request.body;
 
     await this.alterarStatusProducaoUseCase.execute(id, status);
+    return response.send(200);
   }
 }
 
