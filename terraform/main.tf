@@ -68,7 +68,7 @@ resource "aws_db_instance" "producao" {
 
 resource "aws_db_parameter_group" "producao" {
   name   = "producao"
-  family = "postgres14"
+  family = "postgres16"
 
   parameter {
     name  = "log_connections"
