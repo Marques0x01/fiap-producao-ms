@@ -8,11 +8,6 @@ provider "aws" {
   skip_requesting_account_id  = false
 }
 
-variable "account_id" {
-  description = "AWS Account ID"
-  default     = "000000000000"
-}
-
 data "aws_availability_zones" "available" {}
 
 module "vpc" {
