@@ -65,7 +65,12 @@
       "ts"
     ],
     "roots": [
-      "test",
+      "!test",
+      "!src/main.ts",
+      "!cucumber.js",
+      "!src/producao/providers/producao.providers.ts",
+      "!features/step_definitions/order_to_production_queue.steps.ts",
+      "!src/producao/providers/database.providers.ts",
       "src/producao/controller",
       "src/producao/dtos",
       "src/producao/usecases",
