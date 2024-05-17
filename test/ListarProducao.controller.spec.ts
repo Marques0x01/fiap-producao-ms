@@ -1,10 +1,10 @@
-import { CreateProducaoController } from '../../src/producao/controller/CreateProducao.controller';
-import { CreateProducaoUseCase } from '../../src/producao/usecases/createProducao.usecase';
-import { ProducaoRepository } from '../repository/producacao.repository';
+import { CreateProducaoController } from '../src/producao/controller/CreateProducao.controller';
+import { CreateProducaoUseCase } from '../src/producao/usecases/createProducao.usecase';
+import { ProducaoRepository } from '../src/producao/repository/producacao.repository';
 import { HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
-import { ListarProducaoUseCase } from '../../src/producao/usecases/listarproducao.usecase';
-import { ListarProducaoController } from '../../src/producao/controller/ListarProducao.controller';
+import { ListarProducaoUseCase } from '../src/producao/usecases/listarproducao.usecase';
+import { ListarProducaoController } from '../src/producao/controller/ListarProducao.controller';
 
 describe('ListaProducaoController', () => {
   let producaoRepository;
@@ -42,10 +42,10 @@ describe('ListaProducaoController', () => {
         ),
       ).toBe(HttpStatus.CREATED);
 
-      expect(await listarProducaoController.handle('1')).toEqual({
+      expect(await listarProducaoController.handle(1)).toEqual({
         id: '1',
         numeroPedido: 1,
-        status: 'Em andamento',
+        status: 'in production',
       });
     });
   });

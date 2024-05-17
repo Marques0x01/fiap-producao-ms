@@ -11,7 +11,7 @@ class CreateProducaoUseCase {
   ) {}
 
   async execute(producao: ProducaoDTO) {
-    producao.status = 'Em andamento';
+    producao.status = 'in production';
     await this.producaoRepository.save(producao);
   }
 }

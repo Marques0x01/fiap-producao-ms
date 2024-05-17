@@ -10,8 +10,8 @@ class AlterarStatusProducaoUseCase {
         private listarProducaoUseCase: ListarProducaoUseCase
       ) {}
 
-      async execute(id: string, status) {
-        const producao = await this.listarProducaoUseCase.execute(id);
+      async execute(numeroPedido: number, status) {
+        const producao = await this.listarProducaoUseCase.execute(numeroPedido);
         producao.status = status;
         this.producaoRepository.save(producao);
       }

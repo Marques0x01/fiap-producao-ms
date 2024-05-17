@@ -8,9 +8,9 @@ class ListarProducaoUseCase {
     @Inject('PRODUCAO_REPOSITORY') private producaoRepository: Repository<Producao>,
   ) {}
 
-  async execute(id: string) {
+  async execute(numeroPedido: number) {
     return await this.producaoRepository.findOne({
-      where: { id: id },
+      where: { numeroPedido },
     });
   }
 }

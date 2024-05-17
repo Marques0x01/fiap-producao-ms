@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ProducaoDTO } from 'src/producao/dtos/producao.dto';
-import { Producao } from 'src/producao/entities/producao.entity';
+import { ProducaoDTO } from '../dtos/producao.dto';
+import { Producao } from '../entities/producao.entity';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()

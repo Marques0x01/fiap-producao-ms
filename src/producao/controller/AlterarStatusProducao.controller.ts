@@ -15,10 +15,10 @@ class AlterarStatusProducaoController {
     @Req() request: Request,
     @Res() response: Response,
   ): Promise<Response> {
-    const id = request.params.id;
+    const numeroPedido = request.params.numeroPedido;
     const { status } = request.body;
 
-    await this.alterarStatusProducaoUseCase.execute(id, status);
+    await this.alterarStatusProducaoUseCase.execute(Number.parseInt(numeroPedido), status);
     return response.send(200);
   }
 }

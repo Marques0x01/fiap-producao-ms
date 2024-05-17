@@ -1,12 +1,12 @@
-import { CreateProducaoController } from '../../src/producao/controller/CreateProducao.controller';
-import { CreateProducaoUseCase } from '../../src/producao/usecases/createProducao.usecase';
-import { ProducaoRepository } from '../repository/producacao.repository';
+import { CreateProducaoController } from '../src/producao/controller/CreateProducao.controller';
+import { CreateProducaoUseCase } from '../src/producao/usecases/createProducao.usecase';
+import { ProducaoRepository } from '../src/producao/repository/producacao.repository';
 import { HttpStatus } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { ListarProducaoController } from '../../src/producao/controller/ListarProducao.controller';
-import { AlterarStatusProducaoController } from '../../src/producao/controller/AlterarStatusProducao.controller';
-import { ListarProducaoUseCase } from '../../src/producao/usecases/listarproducao.usecase';
-import { AlterarStatusProducaoUseCase } from '../../src/producao/usecases/alterarStatusProducao.usecase';
+import { ListarProducaoController } from '../src/producao/controller/ListarProducao.controller';
+import { AlterarStatusProducaoController } from '../src/producao/controller/AlterarStatusProducao.controller';
+import { ListarProducaoUseCase } from '../src/producao/usecases/listarproducao.usecase';
+import { AlterarStatusProducaoUseCase } from '../src/producao/usecases/alterarStatusProducao.usecase';
 
 describe('AlterarStatusProducaoController', () => {
   let producaoRepository;
@@ -45,7 +45,7 @@ describe('AlterarStatusProducaoController', () => {
       } as unknown as Response;
 
       const resquestMock = {
-        params: { id: '1' },
+        params: { numeroPedido: 1 },
         body: { status: 'Finalizado' },
       } as unknown as Request;
 
@@ -66,7 +66,7 @@ describe('AlterarStatusProducaoController', () => {
         ),
       ).toBe(HttpStatus.OK);
 
-      expect(await listarProducaoController.handle('1')).toEqual({
+      expect(await listarProducaoController.handle(1)).toEqual({
         id: '1',
         numeroPedido: 1,
         status: 'Finalizado',

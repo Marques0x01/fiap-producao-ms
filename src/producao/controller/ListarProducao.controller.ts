@@ -9,9 +9,9 @@ import { ListarProducaoUseCase } from '../usecases/listarproducao.usecase';
 class ListarProducaoController {
   constructor(private readonly listarProducaoUseCase: ListarProducaoUseCase) {}
 
-  @Get(':id')
-  async handle(@Param('id') id: string): Promise<Producao> {
-    return await this.listarProducaoUseCase.execute(id);
+  @Get(':numeroPedido')
+  async handle(@Param('numeroPedido') numeroPedido: number): Promise<Producao> {
+    return await this.listarProducaoUseCase.execute(numeroPedido);
   }
 }
 

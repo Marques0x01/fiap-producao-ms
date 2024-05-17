@@ -1,0 +1,64 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "order-to-production-queue;add-order-to-production-queue",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Add Order to Production Queue",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I received order with ID \"51234\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "the production team adds it to the production queue",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the queue should contain \"51234\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "the order status should be \"in production\"",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "order-to-production-queue",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Order to production queue",
+    "tags": [],
+    "uri": "test/features/order_to_production_queue.feature"
+  }
+]
