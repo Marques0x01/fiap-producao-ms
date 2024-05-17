@@ -59,19 +59,8 @@ resource "aws_db_instance" "producao" {
   engine_version         = "16.3"
   username               = "edu"
   password               = var.db_password
-  parameter_group_name   = aws_db_parameter_group.producao.name
   publicly_accessible    = true
   skip_final_snapshot    = true
-}
-
-resource "aws_db_parameter_group" "producao" {
-  name   = "producao"
-  family = "postgres16"
-
-  parameter {
-    name  = "log_connections"
-    value = "1"
-  }
 }
 
 variable "db_password" {
