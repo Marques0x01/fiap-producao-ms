@@ -31,10 +31,6 @@ jobs:
       - name: SonarQube Scan
         with:
           projectBaseDir: src
-          args: >
-            -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
-            -Dsonar.verbose=true
-            -Dsonar.projectKey=fiap-producao-ms
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
