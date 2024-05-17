@@ -26,19 +26,20 @@ jobs:
         run: yarn
       - name: Test and coverage
         run: yarn jest --coverage
+      - name: Test with cugit cumber
+        run: yarn cucumber
       - name: SonarQube Scan
         with:
           projectBaseDir: src
           args: >
             -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
             -Dsonar.verbose=true
-            -Dsonar.projectKey=jonathansantoss_fiap-producao-ms
-            -Dsonar.organization=jonathansantoss
+            -Dsonar.projectKey=fiap-producao-ms
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ce26616ab69961f90b45412d6fc2b44a2ae61298
-          SONAR_HOST_URL: https://sonarcloud.io]
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           
       # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
@@ -49,7 +50,7 @@ jobs:
         with:
           scanMetadataReportFile: src/.scannerwork/report-task.txt
         env:
-         SONAR_TOKEN: ce26616ab69961f90b45412d6fc2b44a2ae61298
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   RDS:
     runs-on: ubuntu-latest
