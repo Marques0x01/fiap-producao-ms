@@ -65,18 +65,11 @@
       "ts"
     ],
     "roots": [
+      "test",
       "src/producao/controller",
       "src/producao/dtos",
       "src/producao/usecases",
       "src/producao/repository"
-    ],
-    "coveragePathIgnorePatterns": [
-      "test/**",
-      "src/main.ts",
-      "cucumber.js",
-      "src/producao/providers/producao.providers.ts",
-      "features/step_definitions/order_to_production_queue.steps.ts",
-      "src/producao/providers/database.providers.ts"
     ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
@@ -85,6 +78,15 @@
     "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "cucumber.js",
+      "test",
+      "src/producao/providers/database.providers.ts",
+      "src/main.ts",
+      "features/step_definitions/order_to_production_queue.steps.ts",
+      "src/producao/providers/producao.providers.ts",
+      "terraform/main.tf"
     ]
   }
 }
