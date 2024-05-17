@@ -7,8 +7,8 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'postgres',
-        host: 'localhost.localstack.cloud',
-        port: 4510,
+        host: 'producao.cfooekoy8k6i.us-east-1.rds.amazonaws.com',
+        port: 5432,
         username: 'edu',
         password: 'hashicorp',
         database: 'postgres',
