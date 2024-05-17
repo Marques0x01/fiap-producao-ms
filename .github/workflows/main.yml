@@ -28,9 +28,15 @@ jobs:
         run: yarn jest --coverage
       - name: Test with cugit cumber
         run: yarn cucumber
+      - name: ls
+        run: ls
       - name: SonarQube Scan
         with:
           projectBaseDir: src
+          args: >
+            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.verbose=true
+            -Dsonar.projectKey=fiap-producao-ms
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
