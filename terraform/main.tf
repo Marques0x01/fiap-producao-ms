@@ -16,14 +16,14 @@ module "vpc" {
   enable_dns_support   = true
 }
 
-resource "aws_db_subnet_group" "producao" {
-  name       = "producao"
-  subnet_ids = module.vpc.public_subnets
+# resource "aws_db_subnet_group" "producao" {
+#   name       = "producao"
+#   subnet_ids = module.vpc.public_subnets
 
-  tags = {
-    Name = "producao"
-  }
-}
+#   tags = {
+#     Name = "producao"
+#   }
+# }
 
 data "aws_caller_identity" "current" {}
 
@@ -59,7 +59,7 @@ resource "aws_db_instance" "producao" {
   engine_version         = "16.3"
   username               = "edu"
   password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.producao.name
+  # db_subnet_group_name   = aws_db_subnet_group.producao.name
   vpc_security_group_ids = [aws_security_group.rds.id]
   parameter_group_name   = aws_db_parameter_group.producao.name
   publicly_accessible    = true
