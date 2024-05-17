@@ -78,15 +78,6 @@
     "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "coveragePathIgnorePatterns": [
-      "cucumber.js",
-      "test",
-      "src/producao/providers/database.providers.ts",
-      "src/main.ts",
-      "features/step_definitions/order_to_production_queue.steps.ts",
-      "src/producao/providers/producao.providers.ts",
-      "terraform/main.tf"
     ]
   }
 }
