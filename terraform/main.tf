@@ -8,6 +8,11 @@ provider "aws" {
   skip_requesting_account_id  = false
 }
 
+variable "account_id" {
+  description = "AWS Account ID"
+  default     = "000000000000"
+}
+
 data "aws_availability_zones" "available" {}
 
 module "vpc" {
@@ -31,6 +36,7 @@ resource "aws_db_subnet_group" "producao" {
   }
 }
 
+data "aws_caller_identity" "current" {}
 
 resource "aws_security_group" "rds" {
   name   = "producao_rds"
