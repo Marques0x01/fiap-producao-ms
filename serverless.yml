@@ -1,4 +1,4 @@
-service: fiap-lanches
+service: fiap-producao-ms 
 frameworkVersion: '3'
 
 provider:
