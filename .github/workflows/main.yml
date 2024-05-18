@@ -71,7 +71,7 @@ jobs:
     - name: Install nest
       run: npm i -g @nestjs/cli
     - name: Install dependencies 
-      run: yarn Install
+      run: yarn install
     - name: Build
       run: yarn build
     - name: serverless deploy
