@@ -68,7 +68,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Install serverless
       run: npm install -g serverless
-    - name: Build
-      run: yarn build
     - name: serverless deploy
       run: yarn deploy
