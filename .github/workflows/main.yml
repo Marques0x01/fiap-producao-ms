@@ -68,7 +68,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Install serverless
       run: npm install -g serverless
+    - name: Install nest
+      run: npm i -g @nestjs/cli
     - name: Install dependencies 
       run: yarn Install
+    - name: Build
+      run: yarn build
     - name: serverless deploy
       run: yarn deploy
