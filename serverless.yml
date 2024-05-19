@@ -9,15 +9,7 @@ provider:
   disableRollback: true
   logs:
     httpApi: true
-  deploymentBucket:
-    name: fiap-producao-ms-bucket
-    versioning: true
-    blockPublicAccess: true
-    serverSideEncryption: AES256
 
-plugins:
-  - serverless-deployment-bucket
-  
 functions:
   main:
     handler: dist/src/main.handler
