@@ -10,8 +10,6 @@ provider:
     httpApi: true
   deploymentBucket:
     name: fiap-producao-ms-bucket
-    serverSideEncryption: AES256
-    versioning: true
 
 plugins:
   - serverless-deployment-bucket
