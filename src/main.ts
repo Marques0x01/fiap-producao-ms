@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import serverlessExpress from '@codegenie/serverless-express';
 import { VersioningType } from '@nestjs/common';
-import { apiReference } from '@scalar/nestjs-api-reference';
 
 let server: Handler;
 
@@ -22,18 +21,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  app.use(
-    '/api-docs',
-    apiReference({
-      theme: 'bluePlanet',
-      cdn: 'https://cdn.jsdelivr.net/npm/@scalar/api-reference',
-      spec: {
-        content: document,
-      },
-      darkMode: true,
-      showSidebar: true,
-    }),
-  )
+  SwaggerModule.setup('api-docs', app ,document);
 
   await app.init();
   const expressApp = app.getHttpAdapter().getInstance();

@@ -9,30 +9,14 @@ provider:
   disableRollback: true
   logs:
     httpApi: true
-  # deploymentBucket:
-  #   name: fiap-producao-ms-bucket
-  #   versioning: true
-  #   blockPublicAccess: true
-  #   serverSideEncryption: AES256
+  deploymentBucket:
+    name: fiap-producao-ms-bucket
+    versioning: true
+    blockPublicAccess: true
+    serverSideEncryption: AES256
 
 plugins:
-  # - serverless-deployment-bucket
-  - serverless-s3-deploy
-
-custom:
-    assets:
-      targets:
-       - bucket: fiap-producao-ms-bucket
-         files:
-          - source: ./node_modules
-            globs: '**/'
-          - source: ./src/
-            globs:
-              - '**/'
-          - source: ./dist/
-            globs:
-              - '**/'
-
+  - serverless-deployment-bucket
   
 functions:
   main:
