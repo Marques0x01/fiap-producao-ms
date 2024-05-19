@@ -105,4 +105,4 @@ jobs:
       with:
         args: deploy
       env:
-        SERVERLESS_ACCESS_KEY: AK4MxKwFdRWqbQC5org6kTdeCQ3mIjjP84ddCPffFrQXn
+        SERVERLESS_ACCESS_KEY: AKGIAbETXuqU8G4pWrlhPu8L9u8oTL8u6jnwHXOrRHDBr
