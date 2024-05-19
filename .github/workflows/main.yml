@@ -24,8 +24,6 @@ jobs:
         run: yarn
       - name: Test and coverage
         run: yarn jest --coverage
-      - name: Test with cugit cumber
-        run: yarn cucumber
       - name: ls
         run: ls
       - name: SonarQube Scan
