@@ -12,7 +12,6 @@ provider:
     name: fiap-producao-ms-bucket
     serverSideEncryption: AES256
 
-	
 plugins:
   - serverless-deployment-bucket
 
@@ -47,7 +46,7 @@ functions:
 
 package:
   patterns:
-    - '!node_modules/**'
+    - 'node_modules/**'
     - '!.serverless/**'
     - '!coverage/**'
     - 'dist/**'
