@@ -81,4 +81,5 @@ jobs:
       with:
         args: deploy
       env:
-        SERVERLESS_ACCESS_KEY: AKGIAbETXuqU8G4pWrlhPu8L9u8oTL8u6jnwHXOrRHDBr
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
