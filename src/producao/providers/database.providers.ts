@@ -7,9 +7,9 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'postgres',
-        host: 'fiap-producao-microservice.cfooekoy8k6i.us-east-1.rds.amazonaws.com',
+        host: 'producao-ms-1.cfooekoy8k6i.us-east-1.rds.amazonaws.com',
         port: 5432,
-        username: 'postgres',
+        username: 'edu',
         password: 'hashicorp',
         database: 'postgres',
         entities: [Producao],
