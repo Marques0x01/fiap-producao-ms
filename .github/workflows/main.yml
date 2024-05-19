@@ -83,21 +83,26 @@ jobs:
       with:
         # Disabling shallow clones is recommended for improving the relevancy of reporting
         fetch-depth: 0
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
-      with:
-        aws-region: us-east-1
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    - name: Install serverless
-      run: npm install -g serverless
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
+    #   with:
+    #     aws-region: us-east-1
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    # - name: Install serverless
+      # run: npm install -g serverless
     - name: Install nest
       run: npm i -g @nestjs/cli
     - name: Install dependencies 
       run: yarn install
-    - name: Package Serveless
-      run: serverless package
     - name: Build
       run: yarn build
+    # - name: serverless deploy
+    #   run: yarn deploy
+
     - name: serverless deploy
-      run: yarn deploy
+      uses: serverless/github-action@v3.2
+      with:
+        args: deploy
+      env:
+        SERVERLESS_ACCESS_KEY: AK4MxKwFdRWqbQC5org6kTdeCQ3mIjjP84ddCPffFrQXn
