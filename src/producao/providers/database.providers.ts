@@ -14,6 +14,9 @@ export const databaseProviders = [
         database: 'postgres',
         entities: [Producao],
         synchronize: true,
+        ssl: {
+          rejectUnauthorized: false,
+        }
       });
 
       return dataSource.initialize();
