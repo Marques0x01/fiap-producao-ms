@@ -43,7 +43,7 @@ resource "aws_security_group" "rds" {
 }
 
 
-resource "aws_db_instance" "producao" {
+resource "aws_db_instance" "producao-ms" {
   identifier          = "producao"
   instance_class      = "db.t3.micro"
   allocated_storage   = 5
