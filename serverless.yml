@@ -16,8 +16,24 @@ provider:
     serverSideEncryption: AES256
 
 plugins:
-  - serverless-deployment-bucket
+  # - serverless-deployment-bucket
+  - serverless-s3-deploy
 
+custom:
+    assets:
+      targets:
+       - bucket: fiap-producao-ms-bucket
+         files:
+          - source: ./node_modules
+            globs: '**/'
+          - source: ./src/
+            globs:
+              - '**/'
+          - source: ./dist/
+            globs:
+              - '**/'
+
+  
 functions:
   main:
     handler: dist/src/main.handler
