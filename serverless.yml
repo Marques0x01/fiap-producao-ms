@@ -46,3 +46,8 @@ package:
     - "!.github"
     - '!.git/**'
     - '!terraform/**'
+    - '!test/**'
+    - '!report-config/**'
+    - '!cucumber.js'
+    - '!README.md'
+    - '!features/**'
