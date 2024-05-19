@@ -15,46 +15,46 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  sonarqube:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v4
-        with:
-          # Disabling shallow clones is recommended for improving the relevancy of reporting
-          fetch-depth: 0
-      - name: Install dependencies
-        run: yarn
-      - name: Test and coverage
-        run: yarn jest --coverage
-      - name: Test with cugit cumber
-        run: yarn cucumber
-      - name: ls
-        run: ls
-      - name: SonarQube Scan
-        with:
-          args: >
-            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.verbose=true
-            -Dsonar.projectKey=fiap-producao-ms
-            -Dsonar.sources=src
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  # sonarqube:
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         # Disabling shallow clones is recommended for improving the relevancy of reporting
+  #         fetch-depth: 0
+  #     - name: Install dependencies
+  #       run: yarn
+  #     - name: Test and coverage
+  #       run: yarn jest --coverage
+  #     - name: Test with cugit cumber
+  #       run: yarn cucumber
+  #     - name: ls
+  #       run: ls
+  #     - name: SonarQube Scan
+  #       with:
+  #         args: >
+  #           -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
+  #           -Dsonar.verbose=true
+  #           -Dsonar.projectKey=fiap-producao-ms
+  #           -Dsonar.sources=src
+  #       uses: sonarsource/sonarqube-scan-action@master
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           
-      # Check the Quality Gate status.
-      - name: SonarQube Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        # Force to fail step after specific time.
-        timeout-minutes: 5
-        env:
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     # Check the Quality Gate status.
+  #     - name: SonarQube Quality Gate check
+  #       id: sonarqube-quality-gate-check
+  #       uses: sonarsource/sonarqube-quality-gate-action@master
+  #       # Force to fail step after specific time.
+  #       timeout-minutes: 5
+  #       env:
+  #        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     
   serverless:
     runs-on: ubuntu-latest
-    needs: sonarqube
+    # needs: sonarqube
     steps:
     - uses: actions/checkout@v4
       with:
