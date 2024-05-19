@@ -6,6 +6,8 @@ provider:
   runtime: nodejs20.x
   memorySize: 512
   stage: prod
+  logs:
+    httpApi: true
 
 functions:
   main:
