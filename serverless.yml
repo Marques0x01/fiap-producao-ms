@@ -8,6 +8,9 @@ provider:
   stage: prod
   logs:
     httpApi: true
+  deploymentBucket:
+    name: fiap-producao-ms-bucket
+    serverSideEncryption: AES256
 
 functions:
   main:
