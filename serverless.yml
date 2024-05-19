@@ -9,7 +9,10 @@ provider:
   logs:
     httpApi: true
   deploymentBucket:
-    name: fiap-ms-prod
+    name: fiap-producao-ms-bucket
+    versioning: true
+    blockPublicAccess: true
+    serverSideEncryption: AES256
 
 plugins:
   - serverless-deployment-bucket
