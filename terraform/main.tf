@@ -38,7 +38,7 @@ resource "aws_security_group" "rds" {
   }
 
   tags = {
-    Name = "education_rds"
+    Name = "producao_rds"
   }
 }
 
