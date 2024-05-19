@@ -9,7 +9,7 @@ provider:
   logs:
     httpApi: true
   deploymentBucket:
-    name: fiap-producao-ms-bucket
+    name: fiap-ms-prod
 
 plugins:
   - serverless-deployment-bucket
