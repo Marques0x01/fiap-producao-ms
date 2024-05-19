@@ -38,7 +38,7 @@ functions:
 
 package:
   patterns:
-    - 'node_modules/**'
+    - '!node_modules/**'
     - '!.serverless/**'
     - '!coverage/**'
     - 'dist/**'
