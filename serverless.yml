@@ -12,6 +12,10 @@ provider:
     name: fiap-producao-ms-bucket
     serverSideEncryption: AES256
 
+	
+plugins:
+  - serverless-deployment-bucket
+
 functions:
   main:
     handler: dist/src/main.handler
