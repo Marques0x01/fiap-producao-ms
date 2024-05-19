@@ -1,6 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { Producao } from '../entities/producao.entity';
 import { ListarProducaoUseCase } from '../usecases/listarproducao.usecase';
 
@@ -9,6 +8,16 @@ import { ListarProducaoUseCase } from '../usecases/listarproducao.usecase';
 class ListarProducaoController {
   constructor(private readonly listarProducaoUseCase: ListarProducaoUseCase) {}
 
+  @ApiParam({
+    name: 'numeroPedido',
+    schema: {
+      properties: {
+        numeroPedido: {
+          type: 'number',
+        },
+      },
+    },
+  })
   @Get(':numeroPedido')
   async handle(@Param('numeroPedido') numeroPedido: number): Promise<Producao> {
     return await this.listarProducaoUseCase.execute(numeroPedido);

@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Res } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { CreateProducaoUseCase } from '../usecases/createProducao.usecase';
 import { ProducaoDTO } from '../dtos/producao.dto';
 import { Response } from 'express';
@@ -9,6 +9,15 @@ import { Response } from 'express';
 class CreateProducaoController {
   constructor(private readonly createProducaoUseCase: CreateProducaoUseCase) {}
 
+  @ApiBody({
+    schema: {
+      properties: {
+        numeroPedido: {
+          type: 'integer',
+        }
+      }
+    }
+  })
   @Post()
   async handle(
     @Body() producao: ProducaoDTO,

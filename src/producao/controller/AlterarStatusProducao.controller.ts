@@ -1,5 +1,5 @@
 import { Controller, Put, Req, Res } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { AlterarStatusProducaoUseCase } from '../usecases/alterarStatusProducao.usecase';
 import { Request, Response } from 'express';
 
@@ -10,6 +10,19 @@ class AlterarStatusProducaoController {
     private readonly alterarStatusProducaoUseCase: AlterarStatusProducaoUseCase,
   ) {}
 
+  @ApiParam({
+    name: '',
+    schema: {
+      properties: {
+        numeroPedido: {
+          type: 'number',
+        },
+        status: {
+          type: 'string',
+        },
+      },
+    },
+  })
   @Put()
   async handle(
     @Req() request: Request,
@@ -18,7 +31,10 @@ class AlterarStatusProducaoController {
     const numeroPedido = request.params.numeroPedido;
     const { status } = request.body;
 
-    await this.alterarStatusProducaoUseCase.execute(Number.parseInt(numeroPedido), status);
+    await this.alterarStatusProducaoUseCase.execute(
+      Number.parseInt(numeroPedido),
+      status,
+    );
     return response.send(200);
   }
 }
