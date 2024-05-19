@@ -32,7 +32,7 @@ resource "aws_security_group" "rds" {
 
 
 resource "aws_db_instance" "producao-ms-1" {
-  identifier          = "producao-ms"
+  identifier          = "producao-ms-1"
   instance_class      = "db.t3.micro"
   allocated_storage   = 5
   engine              = "postgres"
