@@ -1,5 +1,5 @@
 provider "aws" {
-  region                      = "us-east-1"
+  region = "us-east-1"
 }
 
 data "aws_availability_zones" "available" {}
@@ -16,14 +16,6 @@ module "vpc" {
   enable_dns_support   = true
 }
 
-# resource "aws_db_subnet_group" "producao" {
-#   name       = "producao"
-#   subnet_ids = module.vpc.public_subnets
-
-#   tags = {
-#     Name = "producao"
-#   }
-# }
 
 data "aws_caller_identity" "current" {}
 
@@ -52,22 +44,15 @@ resource "aws_security_group" "rds" {
 
 
 resource "aws_db_instance" "producao" {
-  identifier             = "producao"
-  instance_class         = "db.t3.micro"
-  allocated_storage      = 5
-  engine                 = "postgres"
-  engine_version         = "16.3"
-  username               = "edu"
-  password               = var.db_password
-  publicly_accessible    = true
-  skip_final_snapshot    = true
-}
-
-variable "db_password" {
-  description = "RDS root user password"
-  type        = string
-  sensitive   = true
-  default = "hashicorp"
+  identifier          = "producao"
+  instance_class      = "db.t3.micro"
+  allocated_storage   = 5
+  engine              = "postgres"
+  engine_version      = "16.3"
+  username            = "edu"
+  password            = "hashicorp"
+  publicly_accessible = true
+  skip_final_snapshot = true
 }
 
 output "rds_hostname" {
