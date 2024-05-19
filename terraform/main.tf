@@ -44,7 +44,7 @@ resource "aws_security_group" "rds" {
 
 
 resource "aws_db_instance" "producao-ms" {
-  identifier          = "producao"
+  identifier          = "producao-ms"
   instance_class      = "db.t3.micro"
   allocated_storage   = 5
   engine              = "postgres"
@@ -57,18 +57,18 @@ resource "aws_db_instance" "producao-ms" {
 
 output "rds_hostname" {
   description = "RDS instance hostname"
-  value       = aws_db_instance.producao.address
+  value       = aws_db_instance.producao-ms.address
   sensitive   = true
 }
 
 output "rds_port" {
   description = "RDS instance port"
-  value       = aws_db_instance.producao.port
+  value       = aws_db_instance.producao-ms.port
   sensitive   = true
 }
 
 output "rds_username" {
   description = "RDS instance root username"
-  value       = aws_db_instance.producao.username
+  value       = aws_db_instance.producao-ms.username
   sensitive   = true
 }
