@@ -70,6 +70,8 @@ jobs:
       run: npm install -g serverless
     - name: Install nest
       run: npm i -g @nestjs/cli
+    - name: Package Serveless
+      run: serverless package
     - name: Install dependencies 
       run: yarn install
     - name: Build
