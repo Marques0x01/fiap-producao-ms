@@ -5,7 +5,7 @@ import { ListarProducaoController } from '../../src/producao/controller/ListarPr
 import { ListarProducaoUseCase } from '../../src/producao/usecases/listarproducao.usecase';
 import { ProducaoRepository } from '../../src/producao/repository/producacao.repository';
 import assert from 'assert';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
 let producaoRepository;
 let createProducaoController: CreateProducaoController;
@@ -51,12 +51,19 @@ When('the production team adds it to the production queue', async () => {
 });
 
 Then('the queue should contain {string}', async (numeroPedido: string) => {
+  const resquestMock = {
+    params: { numeroPedido: 1 },
+  } as unknown as Request;
+
   assert.equal(
-    (await listarProducaoController.handle(Number.parseInt(numeroPedido))).id,
+    (await listarProducaoController.handle(resquestMock)).id,
     '1',
   );
 });
 
 Then('the order status should be {string}', async (status: string) => {
-  assert.equal((await listarProducaoController.handle(orderId)).status, status);
+  const resquestMock = {
+    params: { numeroPedido: 1 },
+  } as unknown as Request;
+  assert.equal((await listarProducaoController.handle(resquestMock)).status, status);
 });
