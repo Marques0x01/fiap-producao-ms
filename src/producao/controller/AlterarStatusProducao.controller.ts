@@ -1,5 +1,5 @@
 import { Controller, Put, Req, Res } from '@nestjs/common';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 import { AlterarStatusProducaoUseCase } from '../usecases/alterarStatusProducao.usecase';
 import { Request, Response } from 'express';
 
