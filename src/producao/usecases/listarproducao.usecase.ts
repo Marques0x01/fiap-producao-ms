@@ -10,7 +10,7 @@ class ListarProducaoUseCase {
 
   async execute(numeroPedido: number) {
     return await this.producaoRepository.findOne({
-      where: { numeroPedido },
+      where: { numeroPedido: numeroPedido },
     });
   }
 }
