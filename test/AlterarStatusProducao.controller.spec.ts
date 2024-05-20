@@ -66,7 +66,7 @@ describe('AlterarStatusProducaoController', () => {
         ),
       ).toBe(HttpStatus.OK);
 
-      expect(await listarProducaoController.handle(1)).toEqual({
+      expect(await listarProducaoController.handle(resquestMock)).toEqual({
         id: '1',
         numeroPedido: 1,
         status: 'Finalizado',

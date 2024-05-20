@@ -22,7 +22,7 @@ class ListarProducaoController {
   @Get(':numeroPedido')
   async handle(@Req() request: Request): Promise<Producao> {
     const numeroPedido = request.params.numeroPedido;
-    return await this.listarProducaoUseCase.execute(Number.parseInt(numeroPedido));
+    return await this.listarProducaoUseCase.execute(Number(numeroPedido));
   }
 }
 

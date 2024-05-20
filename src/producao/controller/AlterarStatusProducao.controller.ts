@@ -38,7 +38,7 @@ class AlterarStatusProducaoController {
     const { status } = request.body;
 
     await this.alterarStatusProducaoUseCase.execute(
-      Number.parseInt(numeroPedido),
+      Number(numeroPedido),
       status,
     );
     return response.send(200);

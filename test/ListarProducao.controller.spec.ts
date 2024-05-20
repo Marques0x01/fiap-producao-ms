@@ -2,7 +2,7 @@ import { CreateProducaoController } from '../src/producao/controller/CreateProdu
 import { CreateProducaoUseCase } from '../src/producao/usecases/createProducao.usecase';
 import { ProducaoRepository } from '../src/producao/repository/producacao.repository';
 import { HttpStatus } from '@nestjs/common';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { ListarProducaoUseCase } from '../src/producao/usecases/listarproducao.usecase';
 import { ListarProducaoController } from '../src/producao/controller/ListarProducao.controller';
 
@@ -32,6 +32,10 @@ describe('ListaProducaoController', () => {
         send: jest.fn((x) => x),
       } as unknown as Response;
 
+      const resquestMock = {
+        params: { numeroPedido: 1 },
+      } as unknown as Request;
+
       expect(
         await createProducaoController.handle(
           {
@@ -42,7 +46,7 @@ describe('ListaProducaoController', () => {
         ),
       ).toBe(HttpStatus.CREATED);
 
-      expect(await listarProducaoController.handle(1)).toEqual({
+      expect(await listarProducaoController.handle(resquestMock)).toEqual({
         id: '1',
         numeroPedido: 1,
         status: 'in production',
