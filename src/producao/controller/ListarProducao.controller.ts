@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Req } from '@nestjs/common';
 import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { Producao } from '../entities/producao.entity';
 import { ListarProducaoUseCase } from '../usecases/listarproducao.usecase';
