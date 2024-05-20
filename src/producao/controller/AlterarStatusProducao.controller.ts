@@ -11,19 +11,25 @@ class AlterarStatusProducaoController {
   ) {}
 
   @ApiParam({
-    name: '',
+    name: 'numeroPedido',
     schema: {
       properties: {
         numeroPedido: {
           type: 'number',
         },
-        status: {
-          type: 'string',
-        },
       },
     },
   })
-  @Put()
+  @ApiBody({
+    schema: {
+      properties: {
+        status: {
+          type: 'string',
+        }
+      }
+    }
+  })
+  @Put(':numeroPedido')
   async handle(
     @Req() request: Request,
     @Res() response: Response,
