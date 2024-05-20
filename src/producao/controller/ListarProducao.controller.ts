@@ -19,8 +19,8 @@ class ListarProducaoController {
     },
   })
   @Get(':numeroPedido')
-  async handle(@Param('numeroPedido') numeroPedido: number): Promise<Producao> {
-    return await this.listarProducaoUseCase.execute(numeroPedido);
+  async handle(@Param() params: any): Promise<Producao> {
+    return await this.listarProducaoUseCase.execute(params.numeroPedido);
   }
 }
 
